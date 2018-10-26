@@ -1,0 +1,95 @@
+.container {
+    margin: 5% auto;
+    width: 70%;
+    height: 600px;
+    border: 3px solid black;
+    background: white;
+}
+
+#title {
+    margin: 40px auto 30px auto;
+    height: 100px;
+    width: 50%;
+    font-size: 72px;
+    text-align: center;
+}
+
+#timecont {
+    margin: 0 auto;
+    height: 50px;
+    padding-top: 18px;
+    width: 50%;
+    text-align: center;
+    font-size: 24px;
+    border: 2px solid aqua;
+}
+
+#question {
+    margin: 25px auto;
+    height: 60px;
+    width: 70%;
+    text-align: center;
+    font-size: 24px;
+    border: 2px solid red;
+}
+
+.bottom {
+    border: 2px solid orange;
+    height: 200px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+#choices {
+    display: block;
+}
+
+#win {
+    display: none;
+}
+
+.answers{
+    height: 75px;
+    width: 80%;
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+#rightside {
+    height: 100%;
+    width: 49%;
+    float: right;
+    position: relative;
+}
+
+#leftside {
+    height: 100%;
+    width: 49%;
+    float: left;
+    position: relative;
+}
+
+
+#choice1 {
+    position:  absolute;
+    top: 0;
+    left: 20px;
+}
+
+#choice2 {
+    position:  absolute;
+    bottom: 0;
+    left: 20px;
+}
+
+#choice3 {
+    position:  absolute;
+    top: 0;
+    right: 20px;
+}
+
+#choice4 {
+    position:  absolute;
+    bottom: 0;
+    right: 20px;
+}
