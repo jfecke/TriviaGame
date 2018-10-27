@@ -6,16 +6,26 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Trivia</title>
     <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/modal.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <h1>Welcome to Triva Night!!</h1>
+            <p>&bull; At the start of the game you will be given a random number, your goal.</p>
+            <div>
+                <button id="btn-begin">Begin</button>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <div id="title">Trivia Night!!</div>
-        <div id="timecont">Time Remaining:  <span id="timer">20</span> Seconds Remaining</div>
+        <div id="timecont">Time Remaining:  <span id="timer"> </span> Seconds Remaining</div>
         <div id="question"></div>
-        <div id="choices" class="bottom">
+        <div id="choices"  class="bottom">
             <div id="leftside">
-                <div id="choice1" class="answers"></div>
+                <div id="choice1" class="answers">Option 1</div>
                 <div id="choice2" class="answers"></div>    
             </div>
             <div id="rightside">
@@ -23,9 +33,16 @@
                 <div id="choice4" class="answers"></div>    
             </div>
         </div>
-        <div id="win" class="bottom">
+        <div id="right" class="bottom">
+            WINNER
+        </div>
+        <div id="wrong" class="bottom">
 
         </div>
+        <div id="end" class="bottom">
+            <button id="btn-over">Start Over?</button>
+        </div>
+
     </div>
 
 

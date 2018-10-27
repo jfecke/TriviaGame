@@ -40,12 +40,12 @@
     margin: 0 auto;
 }
 
-#choices {
-    display: block;
-}
 
-#win {
+#right{
     display: none;
+}
+#wrong {
+    display:none;
 }
 
 .answers{
@@ -53,6 +53,7 @@
     width: 80%;
     border: 2px solid black;
     cursor: pointer;
+    z-index: 20;
 }
 
 #rightside {
@@ -92,4 +93,8 @@
     position:  absolute;
     bottom: 0;
     right: 20px;
+}
+
+#end {
+    display: none;
 }
