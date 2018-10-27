@@ -1,59 +1,60 @@
 var trivia = {
     q1 : {
-        question: "Which is the correct placeholder option?",
-        choices: ["Option 1","Option 2","Option 3","Option 4"],
-        answer: "Option 3"
+        question: "What temperature is the same in Fahrenheit and Celcius?",
+        choices: ["0","112","-40","-52"],
+        answer: "-40"
     },
     q2 : {
-        question: "",
-        choices: [],
-        answer: ""
+        question: "Which two planets are most similar in size diameter wise?",
+        choices: ["Mars and Mercury", "Venus and Earth", "Uranus and Neptune", "Jupiter and Saturn"],
+        answer: "Venus and Earth"
     },
     q3 : {
-        question: "",
-        choices: [],
-        answer: ""
+        question: "What virus was the first vaccine devopled for",
+        choices: ["Rabies", "Cholera", "Smallpox","Yellow Fever"],
+        answer: "Smallpox"
     },
     q4 : {
-        question: "",
-        choices: [],
-        answer: ""
+        question: "Which element is most abundant in Earth's atmosphere",
+        choices: ["Oxygen", "Nitrogen", "Argon", "Hydrogen"],
+        answer: "Nitrogen"
     },
     q5 : {
-        question: "",
-        choices: [],
-        answer: ""
+        question: "Which Apollo mission first landed on the Moon?",
+        choices: ["11", "13", "5", "7"],
+        answer: "11"
     },
     q6 : {
-        question: "",
-        choices: [],
-        answer: ""
+        question: "Ganymede is a moon of which planet?",
+        choices: ["Saturn", "Jupiter", "Uranus", "Mars"],
+        answer: "Jupiter"
     },
     q7 : {
-        question: "",
-        choices: [],
-        answer: ""
+        question: "How many moons does Neptune have?",
+        choices: ["4", "16", "9", "13"],
+        answer: "13"
     },
     q8 : {
-        question: "",
-        choices: [],
-        answer: ""
+        question: "Which part of the electromagnetic spectrum has the shortest wavelength?",
+        choices: ["Radio Waves", "X-rays", " Microwaves", "Gamma rays"],
+        answer: "Gamma rays"
     },
     q9 : {
-        question: "",
-        choices: [],
-        answer: ""
+        question: "What is the Atomic Symbol for Silver?",
+        choices: ["Si", "Ag", "Au", "Sr"],
+        answer: "Au"
     },
     q10 : {
-        question: "",
-        choices: [],
-        answer: ""
+        question: "How many questions does this quiz have?",
+        choices: ["10", "11", "9", "12"],
+        answer: "10"
     },
     intervalTime: 0,
-    difficulty: 20,
+    difficulty: 15,
     time : 0,
-    tracker: 1,
     options : [],
+    currentQuestion: Math.floor(Math.random()*11),
+    questionsAsked: [],
     answer : "",
     correct: 0,
     incorrect: 0,
@@ -74,12 +75,13 @@ var trivia = {
     choice4txt : document.getElementById("choice4text"),
     timer: document.getElementById("timer"),
     playGame: function() {
-        if (trivia.tracker > 10) {
+        if (trivia.questionsAsked.length >= 10) {
             trivia.endGame();
         }
         else {
             trivia.getOptions();
-            trivia.loadQuestion(trivia["q"+String(trivia.tracker)]);
+            trivia.chooseQuestion();
+            trivia.loadQuestion(trivia["q"+String(trivia.currentQuestion)]);
             trivia.startTimer();          
         }
     },
@@ -92,15 +94,22 @@ var trivia = {
                 trivia.options.push(choice)
             }          
         }
-        trivia.setScreen();
+        trivia.clearScreen();
     },
-    loadQuestion: function(currentQuestion) {
-        trivia.answer = currentQuestion.answer;
-        trivia.qtxt.textContent = currentQuestion.question;
-        trivia.choice1txt.textContent = currentQuestion.choices[trivia.options[0]];
-        trivia.choice2txt.textContent = currentQuestion.choices[trivia.options[1]];
-        trivia.choice3txt.textContent = currentQuestion.choices[trivia.options[2]];
-        trivia.choice4txt.textContent = currentQuestion.choices[trivia.options[3]];
+    chooseQuestion: function() {
+        while (trivia.questionsAsked.indexOf(trivia.currentQuestion) >= 0) {
+            trivia.currentQuestion = Math.floor(Math.random()*10)+1;
+        }
+        trivia.questionsAsked.push(trivia.currentQuestion);
+    },
+    loadQuestion: function(Question) {
+        trivia.choices.style.display = "block";
+        trivia.answer = Question.answer;
+        trivia.qtxt.textContent = Question.question;
+        trivia.choice1txt.textContent = Question.choices[trivia.options[0]];
+        trivia.choice2txt.textContent = Question.choices[trivia.options[1]];
+        trivia.choice3txt.textContent = Question.choices[trivia.options[2]];
+        trivia.choice4txt.textContent = Question.choices[trivia.options[3]];
     },
     startTimer: function() {
         trivia.time = trivia.difficulty;
@@ -134,7 +143,6 @@ var trivia = {
         trivia.right.style.display = "block";
         trivia.qtxt.textContent = "Correct!";
         trivia.right.textContent = "Winner";
-        // trivia.tracker++;
         setTimeout(trivia.playGame,5000);
     },
     wrongChoice: function(x) {
@@ -142,18 +150,18 @@ var trivia = {
         trivia.wrong.style.display = "block";
         trivia.qtxt.textContent = x;
         trivia.wrong.textContent = "The Correct Answer was: " + trivia.answer;
-        // trivia.tracker++;
         setTimeout(trivia.playGame,5000);
     },
-    setScreen: function() {
+    clearScreen: function() {
         trivia.wrong.style.display = "none";
         trivia.right.style.display = "none";
         trivia.gameover.style.display = "none";
-        trivia.choices.style.display = "block"
+        trivia.choices.style.display = "none"
     },
     endGame: function() {
         trivia.qtxt.textContent = "Trivia Night is Over. Here is how you did:"
-
+        trivia.clearScreen();
+        trivia.gameover.style.display = "block";
     }
 }
 
