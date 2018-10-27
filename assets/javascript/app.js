@@ -63,10 +63,15 @@ var trivia = {
     wrong: document.getElementById("wrong"),
     gameover: document.getElementById("end"),
     question: document.getElementById("question"),
+    qtxt: document.getElementById("qtxt"),
     choice1 : document.getElementById("choice1"),
     choice2 : document.getElementById("choice2"),
     choice3 : document.getElementById("choice3"),
     choice4 : document.getElementById("choice4"),
+    choice1txt : document.getElementById("choice1text"),
+    choice2txt : document.getElementById("choice2text"),
+    choice3txt : document.getElementById("choice3text"),
+    choice4txt : document.getElementById("choice4text"),
     timer: document.getElementById("timer"),
     playGame: function() {
         if (trivia.tracker > 10) {
@@ -91,11 +96,11 @@ var trivia = {
     },
     loadQuestion: function(currentQuestion) {
         trivia.answer = currentQuestion.answer;
-        trivia.question.textContent = currentQuestion.question;
-        trivia.choice1.textContent = currentQuestion.choices[trivia.options[0]];
-        trivia.choice2.textContent = currentQuestion.choices[trivia.options[1]];
-        trivia.choice3.textContent = currentQuestion.choices[trivia.options[2]];
-        trivia.choice4.textContent = currentQuestion.choices[trivia.options[3]];
+        trivia.qtxt.textContent = currentQuestion.question;
+        trivia.choice1txt.textContent = currentQuestion.choices[trivia.options[0]];
+        trivia.choice2txt.textContent = currentQuestion.choices[trivia.options[1]];
+        trivia.choice3txt.textContent = currentQuestion.choices[trivia.options[2]];
+        trivia.choice4txt.textContent = currentQuestion.choices[trivia.options[3]];
     },
     startTimer: function() {
         trivia.time = trivia.difficulty;
@@ -127,7 +132,7 @@ var trivia = {
     rightChoice: function() {
         trivia.choices.style.display = "none";
         trivia.right.style.display = "block";
-        trivia.question.textContent = "Correct!";
+        trivia.qtxt.textContent = "Correct!";
         trivia.right.textContent = "Winner";
         // trivia.tracker++;
         setTimeout(trivia.playGame,5000);
@@ -135,7 +140,7 @@ var trivia = {
     wrongChoice: function(x) {
         trivia.choices.style.display = "none";
         trivia.wrong.style.display = "block";
-        trivia.question.textContent = x;
+        trivia.qtxt.textContent = x;
         trivia.wrong.textContent = "The Correct Answer was: " + trivia.answer;
         // trivia.tracker++;
         setTimeout(trivia.playGame,5000);
@@ -147,25 +152,25 @@ var trivia = {
         trivia.choices.style.display = "block"
     },
     endGame: function() {
-        trivia.question.textContent = "Trivia Night is Over. Here is how you did:"
+        trivia.qtxt.textContent = "Trivia Night is Over. Here is how you did:"
 
     }
 }
 
 trivia.choice1.addEventListener("click", function() {
-    trivia.chooseAnswer(this.textContent);
+    trivia.chooseAnswer(trivia.choice1txt.textContent);
 });
 
 trivia.choice2.addEventListener("click", function() {
-    trivia.chooseAnswer(this.textContent);
+    trivia.chooseAnswer(trivia.choice2txt.textContent);
 });
 
 trivia.choice3.addEventListener("click", function() {
-    trivia.chooseAnswer(this.textContent);
+    trivia.chooseAnswer(trivia.choice3txt.textContent);
 });
 
 trivia.choice4.addEventListener("click", function() {
-    trivia.chooseAnswer(this.textContent);
+    trivia.chooseAnswer(trivia.choice4txt.textContent);
 });
 
 document.getElementById("btn-begin").addEventListener("click", function() {
