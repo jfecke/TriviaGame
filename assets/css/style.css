@@ -1,8 +1,12 @@
+body {
+    background: url(../images/background.png);
+}
+
 .container {
     margin: 5% auto;
     width: 70%;
     height: 600px;
-    border: 3px solid black;
+    border: 10px solid #0086F1;
     background: white;
 }
 
@@ -21,20 +25,18 @@
     width: 50%;
     text-align: center;
     font-size: 24px;
-    border: 2px solid aqua;
 }
 
 #question {
     margin: 25px auto;
     height: 60px;
     width: 70%;
-    border: 2px solid red;
 }
 
 #qtxt {
     margin-top: 15px;
     text-align: center;
-    font-size: 24px;
+    font-size: 28px;
 }
 
 .bottom {
@@ -107,4 +109,29 @@
 
 #end {
     display: none;
+}
+
+#result {
+    width: 80%;
+    height: 75px;
+    margin: 20px auto;
+}
+
+.results {
+    text-align: center;
+    width: 100%;
+    margin: 15px auto 0 auto;
+    font-size: 20px;
+}
+
+#btn-over{
+    height: 25px;
+    width: 100px;
+    margin-top: 25px;
+}
+
+.center {
+    width: 100px;
+    height: 25px;
+    margin: 20px auto;
 }

@@ -10,12 +10,12 @@ var trivia = {
         answer: "Venus and Earth"
     },
     q3 : {
-        question: "What virus was the first vaccine devopled for",
+        question: "What virus was the first vaccine devopled for?",
         choices: ["Rabies", "Cholera", "Smallpox","Yellow Fever"],
         answer: "Smallpox"
     },
     q4 : {
-        question: "Which element is most abundant in Earth's atmosphere",
+        question: "Which element is most abundant in Earth's atmosphere?",
         choices: ["Oxygen", "Nitrogen", "Argon", "Hydrogen"],
         answer: "Nitrogen"
     },
@@ -53,7 +53,7 @@ var trivia = {
     difficulty: 15,
     time : 0,
     options : [],
-    currentQuestion: Math.floor(Math.random()*11),
+    currentQuestion: Math.floor(Math.random()*10)+1,
     questionsAsked: [],
     answer : "",
     correct: 0,
@@ -74,6 +74,9 @@ var trivia = {
     choice3txt : document.getElementById("choice3text"),
     choice4txt : document.getElementById("choice4text"),
     timer: document.getElementById("timer"),
+    correcttxt: document.getElementById("correct"),
+    incorrecttxt: document.getElementById("incorrect"),
+    unansweredtxt: document.getElementById("unanswered"),
     playGame: function() {
         if (trivia.questionsAsked.length >= 10) {
             trivia.endGame();
@@ -99,6 +102,7 @@ var trivia = {
     chooseQuestion: function() {
         while (trivia.questionsAsked.indexOf(trivia.currentQuestion) >= 0) {
             trivia.currentQuestion = Math.floor(Math.random()*10)+1;
+            console.log(trivia.currentQuestion);
         }
         trivia.questionsAsked.push(trivia.currentQuestion);
     },
@@ -143,14 +147,14 @@ var trivia = {
         trivia.right.style.display = "block";
         trivia.qtxt.textContent = "Correct!";
         trivia.right.textContent = "Winner";
-        setTimeout(trivia.playGame,5000);
+        setTimeout(trivia.playGame,500);
     },
     wrongChoice: function(x) {
         trivia.choices.style.display = "none";
         trivia.wrong.style.display = "block";
         trivia.qtxt.textContent = x;
         trivia.wrong.textContent = "The Correct Answer was: " + trivia.answer;
-        setTimeout(trivia.playGame,5000);
+        setTimeout(trivia.playGame,500);
     },
     clearScreen: function() {
         trivia.wrong.style.display = "none";
@@ -162,6 +166,17 @@ var trivia = {
         trivia.qtxt.textContent = "Trivia Night is Over. Here is how you did:"
         trivia.clearScreen();
         trivia.gameover.style.display = "block";
+        trivia.correcttxt.textContent = trivia.correct;
+        trivia.incorrecttxt.textContent = trivia.incorrect;
+        console.log(trivia.unanswered);
+        trivia.unansweredtxt.textContent = trivia.unanswered;
+    },
+    resetGame: function(){
+        trivia.correct = 0;
+        trivia.incorrect = 0;
+        trivia.unanswered = 0;
+        trivia.questionsAsked = [];
+
     }
 }
 
@@ -184,5 +199,10 @@ trivia.choice4.addEventListener("click", function() {
 document.getElementById("btn-begin").addEventListener("click", function() {
     document.getElementById("myModal").style.display = "none";
     trivia.timer.textContent = trivia.difficulty;
+    trivia.playGame();
+});
+
+document.getElementById("btn-over").addEventListener("click", function() {
+    trivia.resetGame();
     trivia.playGame();
 });
