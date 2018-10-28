@@ -1,21 +1,23 @@
 body {
     background: url(../images/background.png);
+    font-family: 'Share Tech Mono', monospace;
 }
 
 .container {
     margin: 5% auto;
     width: 70%;
-    height: 600px;
+    height: 575px;
     border: 10px solid #0086F1;
     background: white;
 }
 
 #title {
-    margin: 40px auto 30px auto;
+    margin: 40px auto 20px auto;
     height: 100px;
-    width: 50%;
+    width: 100%;
     font-size: 72px;
     text-align: center;
+    text-decoration: underline;
 }
 
 #timecont {
@@ -27,10 +29,21 @@ body {
     font-size: 24px;
 }
 
+#gameover {
+    margin: 0 auto;
+    height: 50px;
+    padding-top: 18px;
+    width: 50%;
+    text-align: center;
+    font-size: 36px;
+    display: none;
+    font-weight: bold;
+}
+
 #question {
-    margin: 25px auto;
-    height: 60px;
-    width: 70%;
+    margin: 15px auto 10px auto;
+    height: 50px;
+    width: 95%;
 }
 
 #qtxt {
@@ -47,18 +60,47 @@ body {
 
 #right{
     display: none;
-}
-#wrong {
-    display:none;
+    text-align: center;
 }
 
+#wrong {
+    display:none;
+    text-align: center;
+}
+
+#wrongtxt {
+    text-align: center;
+    font-size: 22px;
+}
+
+#picture {
+    height:100%;
+    margin: 0 auto;
+    justify-content: center;
+    display: inline-block;
+}
+
+#wrongpicture {
+    height:100%;
+    margin: 10px auto;
+    justify-content: center;
+    display: inline-block;
+}
+
+.holder{
+    margin: 0 auto;
+    max-width: 300px;
+}
 .answers{
     height: 75px;
     width: 80%;
     border: 2px solid black;
     cursor: pointer;
     z-index: 20;
+}
 
+.answers:hover {
+    background: lightblue;
 }
 
 .txt{
@@ -125,13 +167,18 @@ body {
 }
 
 #btn-over{
-    height: 25px;
-    width: 100px;
+    height: 50px;
+    width: 200px;
     margin-top: 25px;
+    border: 5px solid black;
+    background: #0086F1;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
 }
 
 .center {
-    width: 100px;
-    height: 25px;
+    width: 200px;
+    height: 50px;
     margin: 20px auto;
 }

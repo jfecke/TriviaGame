@@ -1,8 +1,8 @@
 var trivia = {
     q1 : {
-        question: "What temperature is the same in Fahrenheit and Celcius?",
-        choices: ["0","112","-40","-52"],
-        answer: "-40"
+        question: "Which space probe has left our solar system?",
+        choices: ["Voyager 1","Destiny","Galieo","New Horizons"],
+        answer: "Voyager 1"
     },
     q2 : {
         question: "Which two planets are most similar in size diameter wise?",
@@ -30,9 +30,9 @@ var trivia = {
         answer: "Jupiter"
     },
     q7 : {
-        question: "How many moons does Neptune have?",
-        choices: ["4", "16", "9", "13"],
-        answer: "13"
+        question: "What is the name of Neptune's largest moon?",
+        choices: ["Triton", "Proteus", "Galatea", "Nereid"],
+        answer: "Triton"
     },
     q8 : {
         question: "Which part of the electromagnetic spectrum has the shortest wavelength?",
@@ -42,12 +42,12 @@ var trivia = {
     q9 : {
         question: "What is the Atomic Symbol for Silver?",
         choices: ["Si", "Ag", "Au", "Sr"],
-        answer: "Au"
+        answer: "Ag"
     },
     q10 : {
-        question: "How many questions does this quiz have?",
-        choices: ["10", "11", "9", "12"],
-        answer: "10"
+        question: "What percent of the solar system’s mass does the Sun hold?",
+        choices: ["50.3", "99.8", "76.4", "83.1"],
+        answer: "99.8"
     },
     intervalTime: 0,
     difficulty: 15,
@@ -62,7 +62,12 @@ var trivia = {
     choices: document.getElementById("choices"),
     right : document.getElementById("right"),
     wrong: document.getElementById("wrong"),
-    gameover: document.getElementById("end"),
+    wrongtxt: document.getElementById("wrongtxt"),
+    pic : document.getElementById("picture"),
+    wrongpic : document.getElementById("wrongpicture"),
+    gameend: document.getElementById("end"),
+    timecont: document.getElementById("timecont"),
+    gameover: document.getElementById("gameover"),
     question: document.getElementById("question"),
     qtxt: document.getElementById("qtxt"),
     choice1 : document.getElementById("choice1"),
@@ -117,7 +122,7 @@ var trivia = {
     },
     startTimer: function() {
         trivia.time = trivia.difficulty;
-        trivia.intervalTime = setInterval(trivia.countDown, 1000)
+        trivia.intervalTime = setInterval(trivia.countDown, 900)
     },
     countDown: function() {
         trivia.timer.textContent = trivia.time;
@@ -146,26 +151,32 @@ var trivia = {
         trivia.choices.style.display = "none";
         trivia.right.style.display = "block";
         trivia.qtxt.textContent = "Correct!";
-        trivia.right.textContent = "Winner";
-        setTimeout(trivia.playGame,500);
+        trivia.pic.setAttribute("src", "assets/images/"+trivia.answer+".jpg")
+        setTimeout(trivia.playGame,5000);
     },
     wrongChoice: function(x) {
         trivia.choices.style.display = "none";
         trivia.wrong.style.display = "block";
         trivia.qtxt.textContent = x;
-        trivia.wrong.textContent = "The Correct Answer was: " + trivia.answer;
-        setTimeout(trivia.playGame,500);
+        trivia.wrongtxt.textContent = "The Correct Answer was: " + trivia.answer;
+        trivia.wrongpic.setAttribute("src", "assets/images/"+trivia.answer+".jpg")
+        setTimeout(trivia.playGame,5000);
     },
     clearScreen: function() {
         trivia.wrong.style.display = "none";
         trivia.right.style.display = "none";
+        trivia.gameend.style.display = "none";
+        trivia.choices.style.display = "none";
         trivia.gameover.style.display = "none";
-        trivia.choices.style.display = "none"
+        trivia.timecont.style.display = "block";
+        
     },
     endGame: function() {
-        trivia.qtxt.textContent = "Trivia Night is Over. Here is how you did:"
+        trivia.qtxt.textContent = "Here is how you did:"
         trivia.clearScreen();
+        trivia.timecont.style.display = "none";
         trivia.gameover.style.display = "block";
+        trivia.gameend.style.display = "block";
         trivia.correcttxt.textContent = trivia.correct;
         trivia.incorrecttxt.textContent = trivia.incorrect;
         console.log(trivia.unanswered);
@@ -176,6 +187,7 @@ var trivia = {
         trivia.incorrect = 0;
         trivia.unanswered = 0;
         trivia.questionsAsked = [];
+
 
     }
 }
@@ -204,5 +216,6 @@ document.getElementById("btn-begin").addEventListener("click", function() {
 
 document.getElementById("btn-over").addEventListener("click", function() {
     trivia.resetGame();
+
     trivia.playGame();
 });

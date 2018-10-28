@@ -16,8 +16,9 @@
     background-color: #fefefe;
     margin: 15% auto;
     padding: 30px 30px 10px 30px;
-    border: 3px solid teal;
+    border: 5px solid #0086F1;
     width: 80%;
+    text-align: center;
 }
 
 
@@ -43,6 +44,11 @@
 
 .modal-content button {
     margin: 0 auto;
-    height: 40px;
+    height: 50px;
     width: 250px;
+    border: 5px solid black;
+    background: #0086F1;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
 }

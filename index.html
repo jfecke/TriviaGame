@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Trivia</title>
     <link rel="stylesheet" href="assets/css/reset.css">
+    <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/modal.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -13,15 +14,19 @@
     <div id="myModal" class="modal">
         <div class="modal-content">
             <h1>Welcome to Triva Night!!</h1>
-            <p>&bull; At the start of the game you will be given a random number, your goal.</p>
+            <p>&bull; You will be given 10 science questions</p>
+            <p>&bull; 4 options to choose from</p>
+            <p>&bull; 15 seconds to answer</p>
+            <p>&bull; Good Luck!</p>
             <div>
                 <button id="btn-begin">Begin</button>
             </div>
         </div>
     </div>
     <div class="container">
-        <div id="title">Trivia Night!!</div>
+        <div id="title">Trivia Night</div>
         <div id="timecont">Time Remaining:  <span id="timer"> </span> Seconds Remaining</div>
+        <div id="gameover">Game Over</div>
         <div id="question"><h1 id="qtxt"></h1></div>
         <div id="choices"  class="bottom">
             <div id="leftside">
@@ -34,11 +39,12 @@
             </div>
         </div>
         <div id="right" class="bottom">
-            WINNER
+            <img id="picture" src="" alt="">
         </div>
         <div id="wrong" class="bottom">
-
-        </div>
+            <div id="wrongtxt"></div>
+            <img id="wrongpicture" src="" alt="">
+            </div>
         <div id="end" class="bottom">
             <div id="result">
                 <div class="results">Correct: <span id="correct"></span></div>
@@ -46,7 +52,7 @@
                 <div class="results">Unanswered: <span id="unanswered"></span></div>
             </div>
             <div class="center">
-                <button id="btn-over">Start Over?</button>
+                <button id="btn-over">Play Again?</button>
             </div>
             
         </div>
