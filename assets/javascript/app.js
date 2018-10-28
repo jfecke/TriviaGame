@@ -21,8 +21,8 @@ var trivia = {
     },
     q5 : {
         question: "Which Apollo mission first landed on the Moon?",
-        choices: ["11", "13", "5", "7"],
-        answer: "11"
+        choices: ["Apollo 11", "Apollo 13", "Apollo 5", "Apollo 7"],
+        answer: "Apollo 11"
     },
     q6 : {
         question: "Ganymede is a moon of which planet?",
@@ -36,8 +36,8 @@ var trivia = {
     },
     q8 : {
         question: "Which part of the electromagnetic spectrum has the shortest wavelength?",
-        choices: ["Radio Waves", "X-rays", " Microwaves", "Gamma rays"],
-        answer: "Gamma rays"
+        choices: ["Radio Waves", "X-Rays", " Microwaves", "Gamma Rays"],
+        answer: "Gamma Rays"
     },
     q9 : {
         question: "What is the Atomic Symbol for Silver?",
