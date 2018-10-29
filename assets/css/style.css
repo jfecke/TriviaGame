@@ -182,3 +182,46 @@ body {
     height: 50px;
     margin: 20px auto;
 }
+
+@media screen and (max-width: 640px) {
+
+    #qtxt{
+        font-size: 16px;
+    }
+
+    #timecont{
+        font-size: 14px;
+        width: 95%;
+        height: 20px;
+        margin-top: 50px;
+    }
+
+    #picture {
+        max-height: 150px;
+    }
+
+    #wrongpicture {
+        max-height: 150px;
+    }
+
+    .bottom {
+        height: 150px;
+    }
+    .answers {
+        height: 35px;
+    }
+    .txt{
+        font-size: 16px;
+        margin-top: 0;
+    }
+
+    #rightside {
+        height: 70%;
+    }
+    
+    #leftside {
+        height: 70%;
+    }
+
+
+}
