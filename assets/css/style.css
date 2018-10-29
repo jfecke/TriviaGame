@@ -185,16 +185,25 @@ body {
 }
 
 @media screen and (max-width: 640px) {
+    .container {
+        width: 100%;
+        border: none;
+    }
+
+    #title{
+        height: 150px;
+    }
 
     #qtxt{
-        font-size: 16px;
+        font-size: 18px;
     }
 
     #timecont{
         font-size: 14px;
         width: 95%;
         height: 20px;
-        margin-top: 50px;
+        margin-top: 10px;
+        padding: 0;
     }
 
     #picture {
@@ -210,10 +219,12 @@ body {
     }
     .answers {
         height: 35px;
+        vertical-align: middle;
     }
     .txt{
         font-size: 16px;
         margin-top: 0;
+        vertical-align: middle;
     }
 
     #rightside {
@@ -223,6 +234,24 @@ body {
     #leftside {
         height: 70%;
     }
+
+    .center{
+        margin-top: 30px;
+        height: 120px;
+        width: 200px;
+    }
+
+    .btn-end {
+        display: block;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .answers h1 {
+        vertical-align: middle;
+        text-align: center;
+    }
+
 
 
 }

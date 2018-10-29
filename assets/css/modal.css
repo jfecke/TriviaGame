@@ -19,6 +19,7 @@
     border: 5px solid #0086F1;
     width: 80%;
     text-align: center;
+    min-height: 300px;
 }
 
 
@@ -73,7 +74,7 @@ table {
 
 .setting-option {
     height: 50px;
-    width: 40%;
+    width: 60%;
     display: block;
     margin: 10px auto;
 }
@@ -100,3 +101,32 @@ td {
     background: lightblue;
 }
 
+@media screen and (max-width: 975px) {
+    .setting-option {
+        height: 100px;
+        text-align: center;
+        width: 90%;
+    }
+
+    .label {
+        clear: both;
+        float: none;
+        font-size: 25px;
+        margin: 5px auto;
+        
+    }
+
+    table {
+        clear: both;
+        float: none;
+        margin: 5px auto;
+    }
+
+    .modal-content button {
+        width: 150px;
+    }
+
+    .btn-cont {
+        height: 50px;
+    }
+}
