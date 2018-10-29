@@ -35,11 +35,12 @@
     width: 90%;
 }
 
-.modal-content div {
+.btn-cont {
     width: 100%;
     height: 40px;
     text-align: center;
     margin: 30px auto 20px auto;
+    position: relative;
 }
 
 .modal-content button {
@@ -52,3 +53,50 @@
     font-size: 22px;
     cursor: pointer;
 }
+
+.modal img {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+}
+
+#settingscreen {
+    display: none;
+}
+
+table {
+    float: right;
+}
+
+.setting-option {
+    height: 50px;
+    width: 40%;
+    display: block;
+    margin: 10px auto;
+}
+
+td {
+    width: 100px;
+    height: 40px;
+    border: 5px solid black;
+    font-size: 26px;
+    vertical-align: middle;
+}
+
+.label {
+    font-size: 25px;
+    float:left;
+    margin-top: 15px;
+}
+
+.diff:hover {
+    cursor: pointer;
+}
+
+#easy, #musicon, #soundon {
+    background: lightblue;
+}
+

@@ -12,16 +12,51 @@
 </head>
 <body>
     <div id="myModal" class="modal">
-        <div class="modal-content">
+        <div id="titlescreen" class="modal-content">
             <h1>Welcome to Triva Night!!</h1>
             <p>&bull; You will be given 10 science questions</p>
             <p>&bull; 4 options to choose from</p>
-            <p>&bull; 15 seconds to answer</p>
+            <p>&bull; <span id="timeset">15</span> seconds to answer</p>
             <p>&bull; Good Luck!</p>
-            <div>
+            <div class="btn-cont">
+                <img id="settings" src="assets/images/settings.jpg" alt="">
                 <button id="btn-begin">Begin</button>
             </div>
         </div>
+        <div id="settingscreen" class="modal-content">
+                <h1>Welcome to Triva Night!!</h1>
+                <div class="setting-option">
+                    <div class="label">Difficulty:</div>  
+                    <table>
+                        <tr id="diff">
+                            <td class="diff" id="easy">Easy</td>
+                            <td class="diff" id="medium">Medium</td>
+                            <td class="diff" id="hard">Hard</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="setting-option">
+                    <div class="label">Music:</div>  
+                    <table>
+                        <tr>
+                            <td class="diff" id="musicon">On</td>
+                            <td class="diff" id="musicoff">Off</td>
+                        </tr>
+                        </table>
+                </div>
+                <div class="setting-option">
+                        <div class="label">Sound:</div>  
+                        <table>
+                            <tr>
+                                <td class="diff" id="soundon">On</td>
+                                <td class="diff" id="soundoff">Off</td>
+                            </tr>
+                            </table>
+                    </div>
+                <div class="btn-cont">
+                    <button id="btn-back">Okay</button>
+                </div>
+            </div>
     </div>
     <div class="container">
         <div id="title">Trivia Night</div>
@@ -37,14 +72,17 @@
                 <div id="choice3" class="answers"><h1 id="choice3text" class="txt"></h1></div>
                 <div id="choice4" class="answers"><h1 id="choice4text" class="txt"></h1></div>    
             </div>
+            <audio id="music-background" src="assets/sound/background.wav" loop></audio>
         </div>
         <div id="right" class="bottom">
             <img id="picture" src="" alt="">
+            <audio id="sound-correct" src="assets/sound/correct.wav"></audio>
         </div>
         <div id="wrong" class="bottom">
             <div id="wrongtxt"></div>
             <img id="wrongpicture" src="" alt="">
-            </div>
+            <audio id="sound-wrong" src="assets/sound/wrong.wav"></audio>
+        </div>
         <div id="end" class="bottom">
             <div id="result">
                 <div class="results">Correct: <span id="correct"></span></div>
@@ -52,9 +90,11 @@
                 <div class="results">Unanswered: <span id="unanswered"></span></div>
             </div>
             <div class="center">
-                <button id="btn-over">Play Again?</button>
+                <button id="btn-home" class="btn-end">Main Menu</button>
+                <button id="btn-over" class="btn-end">Play Again?</button>
             </div>
-            
+            <audio id="sound-win" src="assets/sound/win.wav"></audio>
+            <audio id="sound-perfect" src="assets/sound/perfect.wav"></audio>
         </div>
 
     </div>

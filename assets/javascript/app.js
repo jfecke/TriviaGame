@@ -59,6 +59,13 @@ var trivia = {
     correct: 0,
     incorrect: 0,
     unanswered: 0,
+    musictoggle: true,
+    soundtoggle: true,
+    backgroundMusic: document.getElementById("music-background"),
+    correctSound: document.getElementById("sound-correct"),
+    wrongSound: document.getElementById("sound-wrong"),
+    winSound: document.getElementById("sound-win"),
+    perfectSound: document.getElementById("sound-perfect"),
     choices: document.getElementById("choices"),
     right : document.getElementById("right"),
     wrong: document.getElementById("wrong"),
@@ -82,6 +89,9 @@ var trivia = {
     correcttxt: document.getElementById("correct"),
     incorrecttxt: document.getElementById("incorrect"),
     unansweredtxt: document.getElementById("unanswered"),
+    easy: document.getElementById("easy"),
+    medium: document.getElementById("medium"),
+    hard: document.getElementById("hard"),
     playGame: function() {
         if (trivia.questionsAsked.length >= 10) {
             trivia.endGame();
@@ -90,6 +100,10 @@ var trivia = {
             trivia.getOptions();
             trivia.chooseQuestion();
             trivia.loadQuestion(trivia["q"+String(trivia.currentQuestion)]);
+            if (trivia.musictoggle == true) {
+                trivia.backgroundMusic.currentTime = 0;
+                trivia.backgroundMusic.play();    
+            }
             trivia.startTimer();          
         }
     },
@@ -107,7 +121,6 @@ var trivia = {
     chooseQuestion: function() {
         while (trivia.questionsAsked.indexOf(trivia.currentQuestion) >= 0) {
             trivia.currentQuestion = Math.floor(Math.random()*10)+1;
-            console.log(trivia.currentQuestion);
         }
         trivia.questionsAsked.push(trivia.currentQuestion);
     },
@@ -131,6 +144,7 @@ var trivia = {
             clearInterval(trivia.intervalTime);
             setTimeout(function() {
                 trivia.unanswered++;
+                trivia.backgroundMusic.pause();
                 trivia.wrongChoice("Out of Time!");
             }, 10)
             
@@ -138,6 +152,7 @@ var trivia = {
     },
     chooseAnswer: function(x) {
         clearInterval(trivia.intervalTime);
+        trivia.backgroundMusic.pause();
         if (x == trivia.answer) {
             trivia.correct++;
             trivia.rightChoice();
@@ -148,19 +163,25 @@ var trivia = {
         }
     },
     rightChoice: function() {
+        if (trivia.soundtoggle == true) {
+            trivia.correctSound.play();
+        }
         trivia.choices.style.display = "none";
         trivia.right.style.display = "block";
         trivia.qtxt.textContent = "Correct!";
         trivia.pic.setAttribute("src", "assets/images/"+trivia.answer+".jpg")
-        setTimeout(trivia.playGame,5000);
+        setTimeout(trivia.playGame,3500);
     },
     wrongChoice: function(x) {
+        if (trivia.soundtoggle == true) {
+            trivia.wrongSound.play();
+        }
         trivia.choices.style.display = "none";
         trivia.wrong.style.display = "block";
         trivia.qtxt.textContent = x;
         trivia.wrongtxt.textContent = "The Correct Answer was: " + trivia.answer;
         trivia.wrongpic.setAttribute("src", "assets/images/"+trivia.answer+".jpg")
-        setTimeout(trivia.playGame,5000);
+        setTimeout(trivia.playGame,3500);
     },
     clearScreen: function() {
         trivia.wrong.style.display = "none";
@@ -172,6 +193,11 @@ var trivia = {
         
     },
     endGame: function() {
+        if (trivia.correct == 10 && trivia.soundtoggle == true){
+            trivia.perfectSound.play();
+        } else if (trivia.correct > 6  && trivia.soundtoggle == true) {
+            trivia.winSound.play();
+        }
         trivia.qtxt.textContent = "Here is how you did:"
         trivia.clearScreen();
         trivia.timecont.style.display = "none";
@@ -179,7 +205,6 @@ var trivia = {
         trivia.gameend.style.display = "block";
         trivia.correcttxt.textContent = trivia.correct;
         trivia.incorrecttxt.textContent = trivia.incorrect;
-        console.log(trivia.unanswered);
         trivia.unansweredtxt.textContent = trivia.unanswered;
     },
     resetGame: function(){
@@ -187,8 +212,45 @@ var trivia = {
         trivia.incorrect = 0;
         trivia.unanswered = 0;
         trivia.questionsAsked = [];
-
-
+    },
+    difficultySelect : function(diff) {
+        trivia.easy.style.background = "white";
+        trivia.medium.style.background = "white";
+        trivia.hard.style.background = "white";
+        trivia[diff].style.background = "lightblue";
+        if (diff == "easy") {
+            trivia.difficulty = 15;
+        } else if (diff == "medium") {
+            trivia.difficulty = 10;
+        } else {
+            trivia.difficulty = 5;
+        }
+        document.getElementById("timeset").textContent = trivia.difficulty;
+    },
+    musicSelect: function(musicid) {
+        document.getElementById("musicon").style.background = "white";
+        document.getElementById("musicoff").style.background = "white";
+        document.getElementById(musicid).style.background = "lightblue";
+        if (musicid == "musicon") {
+            trivia.musictoggle = true;
+        } else {
+            trivia.musictoggle = false;
+        }
+    },
+    soundSelect: function(soundid) {
+        document.getElementById("soundon").style.background = "white";
+        document.getElementById("soundoff").style.background = "white";
+        document.getElementById(soundid).style.background = "lightblue";
+        if (soundid == "soundon") {
+            trivia.soundtoggle = true;
+        } else {
+            trivia.soundtoggle = false;
+        }
+    },
+    setVolume : function() {
+        trivia.wrongSound.volume = 0.1;
+        trivia.correctSound.volume = 0.5;
+        trivia.perfectSound.volume = 0.1;
     }
 }
 
@@ -211,11 +273,59 @@ trivia.choice4.addEventListener("click", function() {
 document.getElementById("btn-begin").addEventListener("click", function() {
     document.getElementById("myModal").style.display = "none";
     trivia.timer.textContent = trivia.difficulty;
+    trivia.setVolume();
     trivia.playGame();
 });
 
 document.getElementById("btn-over").addEventListener("click", function() {
     trivia.resetGame();
-
     trivia.playGame();
+});
+
+document.getElementById("btn-home").addEventListener("click", function() {
+    trivia.resetGame();
+    trivia.winSound.pause();
+    trivia.perfectSound.pause();
+    trivia.winSound.currentTime = 0;
+    trivia.perfectSound.currentTime = 0;
+    document.getElementById("myModal").style.display = "block";
+
+});
+
+document.getElementById("settings").addEventListener("click", function() {
+    document.getElementById("titlescreen").style.display = "none";
+    document.getElementById("settingscreen").style.display = "block";
+});
+
+document.getElementById("btn-back").addEventListener("click", function() {
+    document.getElementById("titlescreen").style.display = "block";
+    document.getElementById("settingscreen").style.display = "none";
+});
+
+trivia.easy.addEventListener("click", function() {
+    trivia.difficultySelect(this.id);
+});
+
+trivia.medium.addEventListener("click", function() {
+    trivia.difficultySelect(this.id);
+});
+
+trivia.hard.addEventListener("click", function() {
+    trivia.difficultySelect(this.id);
+}); 
+
+document.getElementById("musicon").addEventListener("click", function() {
+    trivia.musicSelect(this.id);
+});
+
+document.getElementById("musicoff").addEventListener("click", function() {
+    trivia.musicSelect(this.id);
+});
+
+document.getElementById("soundon").addEventListener("click", function() {
+    trivia.soundSelect(this.id);
+});
+
+document.getElementById("soundoff").addEventListener("click", function() {
+    trivia.soundSelect(this.id);
 });

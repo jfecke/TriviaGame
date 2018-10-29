@@ -166,19 +166,20 @@ body {
     font-size: 20px;
 }
 
-#btn-over{
+.btn-end{
     height: 50px;
     width: 200px;
-    margin-top: 25px;
+    margin: 25px 20px 0 20px;
     border: 5px solid black;
     background: #0086F1;
     color: white;
     font-size: 22px;
     cursor: pointer;
+    display: inline-block;
 }
 
 .center {
-    width: 200px;
+    width: 500px;
     height: 50px;
     margin: 20px auto;
 }
