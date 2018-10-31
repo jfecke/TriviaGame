@@ -49,7 +49,7 @@ var trivia = {
         choices: ["50.3", "99.8", "76.4", "83.1"],
         answer: "99.8"
     },
-    intervalTime: 0,
+    intervalTime: null,
     difficulty: 15,
     time : 0,
     options : [],
@@ -135,7 +135,8 @@ var trivia = {
     },
     startTimer: function() {
         trivia.time = trivia.difficulty;
-        trivia.intervalTime = setInterval(trivia.countDown, 900)
+        trivia.countDown();
+        trivia.intervalTime = setInterval(trivia.countDown, 900);
     },
     countDown: function() {
         trivia.timer.textContent = trivia.time;
